@@ -8,7 +8,7 @@ import (
 
 func Index(c *gin.Context) {
 
-	jobs, err := model.GetAllCronjobs()
+	jobs, err := model.GetAllCrons()
 	if err != nil {
 		c.HTML(http.StatusBadRequest, "Cronjobs could not be fetched", gin.H{})
 	}

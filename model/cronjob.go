@@ -1,6 +1,11 @@
 package model
 
-type cronjob struct {
+import (
+	"database/sql"
+	_ "github.com/go-sql-driver/mysql"
+)
+
+type cron struct {
 	base
 	Name        string   `json:"name"`
 	Description string   `json:"description"`
@@ -8,39 +13,39 @@ type cronjob struct {
 	Schedule    schedule `json:"schedule"`
 }
 
-func GetAllCronjobs() ([]cronjob, error) {
+func GetAllCrons() ([]cron, error) {
 
-	return []cronjob{
-		cronjob{
+	return []cron{
+		cron{
 			base: base{
 				Id: 1234,
 			},
-			Name:        "test cronjob 1",
-			Description: "description of test cronjob 1",
+			Name:        "test cron 1",
+			Description: "description of test cron 1",
 			Command:     NewShellCommand("echo hello world"),
 			Schedule:    NewSchedule("* * * * *"),
 		},
-		cronjob{
+		cron{
 			base: base{
 				Id: 1235,
 			},
-			Name:        "test cronjob 2",
-			Description: "description of test cronjob 2",
-			Command:     NewShellCommand("echo this is cronjob 2"),
+			Name:        "test cron 2",
+			Description: "description of test cron 2",
+			Command:     NewShellCommand("echo this is cron 2"),
 			Schedule:    NewSchedule("* * * * *"),
 		},
 	}, nil
 
 }
 
-func GetCronjob(id int64) (cronjob, error) {
-	return cronjob{
+func GetCronjob(id int64) (cron, error) {
+	return cron{
 		base: base{
 			Id: id,
 		},
-		Name:        "test cronjob 2",
-		Description: "description of test cronjob but only for one ... todo :)",
-		Command:     NewShellCommand("echo test cronjob get"),
+		Name:        "test cron 2",
+		Description: "description of test cron but only for one ... todo :)",
+		Command:     NewShellCommand("echo test cron get"),
 		Schedule:    NewSchedule("* * * * *"),
 	}, nil
 }

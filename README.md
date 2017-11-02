@@ -1,2 +1,2 @@
 # cron-manager
-Manages cronjobs in Golang.
+Manages crons in Golang.
